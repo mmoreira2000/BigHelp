@@ -16,7 +16,7 @@ namespace BigHelp.Threading.PerformanceTests
         private List<int> _listaStaticLock;
 
         public static object StaticLock = new object();
-        public static DynamicLocks DynamicLocks = new DynamicLocks();
+        public static NamedLocks NamedLocks = new NamedLocks();
 
         [GlobalSetup]
         public void Setup()
@@ -63,7 +63,7 @@ namespace BigHelp.Threading.PerformanceTests
             {
                 for (int i = 0; i < N; i++)
                 {
-                    lock (DynamicLocks.AquireLock("lockMe"))
+                    lock (NamedLocks.AquireLock("lockMe"))
                     {
                         _listaDynamicLock.Add(i);
                     }
@@ -73,7 +73,7 @@ namespace BigHelp.Threading.PerformanceTests
             {
                 for (int i = 0; i < N; i++)
                 {
-                    lock (DynamicLocks.AquireLock("lockMe"))
+                    lock (NamedLocks.AquireLock("lockMe"))
                     {
                         _listaDynamicLock.Add(i);
                     }
@@ -86,8 +86,5 @@ namespace BigHelp.Threading.PerformanceTests
             t1.Join();
             t2.Join();
         }
-
-
-
     }
 }
