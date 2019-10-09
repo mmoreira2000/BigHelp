@@ -1,14 +1,20 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
 
 namespace BigHelp.Threading
 {
+    /// <summary>
+    /// Provides named objects that can be used to do lock operations based on names.
+    /// </summary>
     public class NamedLocks
     {
         private readonly ConcurrentDictionary<string, object> _locksTable;
+
+        /// <summary>
+        /// Default constructor.
+        /// </summary>
+        /// <param name="keyComparer">The named key comparer. Defaults to Case Sensitive ordinal comparison</param>
         public NamedLocks(IEqualityComparer<string> keyComparer = null)
         {
             if (keyComparer == null) keyComparer = StringComparer.Ordinal;
