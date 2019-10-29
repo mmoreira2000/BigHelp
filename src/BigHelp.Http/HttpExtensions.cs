@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Reflection;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -134,28 +136,69 @@ namespace BigHelp.Http
         {
             return client.SendAsync(new HttpRequestMessage(HttpMethod.Head, requestUri), completionOption, cancellationToken);
         }
-    }
 
-    public class HttpDownloadProgress
-    {
-        public long? TotalSize { get; internal set; }
-        public long TotalDownloaded { get; internal set; }
-
-        public double PercentDownloaded => TotalSize.HasValue ? Math.Round((double)TotalDownloaded / TotalSize.Value, 4) : -1D;
-
-        internal HttpDownloadProgress()
+        public static async Task<HttpRequestMessage> CloneIfAlreadySent(this HttpRequestMessage httpRequestMessage)
         {
+            var fInfo = GetInternalSendStatus();
+            if (fInfo != null)
+            {
+                var sent = Convert.ToInt32(fInfo.GetValue(httpRequestMessage)) != 0;
+                if (!sent) return httpRequestMessage;
+            }
 
+            var clonedRequest = new HttpRequestMessage(httpRequestMessage.Method, httpRequestMessage.RequestUri)
+            {
+                Content = await httpRequestMessage.Content.CloneContent(),
+                Version = httpRequestMessage.Version
+            };
+            foreach (KeyValuePair<string, object> prop in httpRequestMessage.Properties)
+            {
+                clonedRequest.Properties.Add(prop);
+            }
+            foreach (KeyValuePair<string, IEnumerable<string>> header in httpRequestMessage.Headers)
+            {
+                clonedRequest.Headers.TryAddWithoutValidation(header.Key, header.Value);
+            }
+            return clonedRequest;
+        }
+        private static async Task<HttpContent> CloneContent(this HttpContent content)
+        {
+            if (content == null) return null;
+
+            using (var ms = new MemoryStream())
+            {
+                await content.CopyToAsync(ms);
+                ms.Position = 0;
+
+                var clone = new StreamContent(ms);
+                foreach (KeyValuePair<string, IEnumerable<string>> header in content.Headers)
+                {
+                    clone.Headers.Add(header.Key, header.Value);
+                }
+                return clone;
+            }
         }
 
-        public override string ToString()
+        private static FieldInfo _sendStatusFieldInfo;
+        private static bool _initializedSendStatusFieldInfo;
+        private static FieldInfo GetInternalSendStatus()
         {
-            var format = "###,###,###,###,###,###,###";
-            if (TotalSize.HasValue)
-            {
-                return $"{TotalDownloaded.ToString(format)}/{TotalSize.Value.ToString(format)} bytes downloaded ({Math.Round(PercentDownloaded * 100, 2)}%)";
-            }
-            return $"{TotalDownloaded.ToString(format)} bytes downloaded";
+            //https://www.lifehacker.com.au/2016/05/microsoft-reconsiders-reflection-serialisation-changes-for-net-core/
+            //https://devblogs.microsoft.com/dotnet/evolving-the-reflection-api/
+
+            if (_initializedSendStatusFieldInfo) return _sendStatusFieldInfo;
+
+            Type requestType = typeof(HttpRequestMessage);
+            var bindingFlags = BindingFlags.Instance | BindingFlags.NonPublic;
+
+            //https://github.com/microsoft/referencesource/blob/master/System/net/System/Net/Http/HttpRequestMessage.cs
+            //https://github.com/mono/mono/blob/master/mcs/class/System.Net.Http/System.Net.Http/HttpRequestMessage.cs
+            _sendStatusFieldInfo = requestType.GetField("_sendStatus", bindingFlags)
+                                     ?? requestType.GetField("sendStatus", bindingFlags)
+                                     ?? requestType.GetField("is_used", bindingFlags);
+
+            _initializedSendStatusFieldInfo = true;
+            return _sendStatusFieldInfo;
         }
     }
 }
