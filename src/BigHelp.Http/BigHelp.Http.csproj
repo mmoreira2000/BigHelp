@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <Version>0.1.0</Version>
+    <Version>0.3.1</Version>
     <Authors>Matheus Moreira</Authors>
     <Description>A set of useful methods targeting HttpClient. 
 This first version provides extension methods to HttpClient adding the capability of downloading files with progress report and resume broken downloads.
@@ -13,7 +13,9 @@ This is a experimental tool and also my first attempt to publish something on nu
     <PackageTags>http "resume download" "download progress"</PackageTags>
     <PackageReleaseNotes>First attempt to publish a package on NuGet.
 * Download files with progress report
-* Resume broken downloads</PackageReleaseNotes>
+* Resume broken downloads
+* Clone request messages that are already sent. This is useful when using resilience libraries like Polly.
+    </PackageReleaseNotes>
     <RepositoryUrl>https://github.com/mmoreira2000/BigHelp/tree/master/src/BigHelp.Http</RepositoryUrl>
     <PackageProjectUrl>https://github.com/mmoreira2000/BigHelp</PackageProjectUrl>
     <RepositoryType>git</RepositoryType>
