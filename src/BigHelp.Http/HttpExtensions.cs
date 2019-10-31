@@ -165,18 +165,12 @@ namespace BigHelp.Http
         {
             if (content == null) return null;
 
-            using (var ms = new MemoryStream())
+            var clone = new ByteArrayContent(await content.ReadAsByteArrayAsync());
+            foreach (KeyValuePair<string, IEnumerable<string>> header in content.Headers)
             {
-                await content.CopyToAsync(ms);
-                ms.Position = 0;
-
-                var clone = new StreamContent(ms);
-                foreach (KeyValuePair<string, IEnumerable<string>> header in content.Headers)
-                {
-                    clone.Headers.Add(header.Key, header.Value);
-                }
-                return clone;
+                clone.Headers.Add(header.Key, header.Value);
             }
+            return clone;
         }
 
         private static FieldInfo _sendStatusFieldInfo;

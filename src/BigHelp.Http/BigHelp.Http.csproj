@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <Version>0.3.1</Version>
+    <Version>0.3.2</Version>
     <Authors>Matheus Moreira</Authors>
     <Description>A set of useful methods targeting HttpClient. 
 This first version provides extension methods to HttpClient adding the capability of downloading files with progress report and resume broken downloads.
