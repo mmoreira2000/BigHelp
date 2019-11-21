@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+    <metadata>
+        <id>BigHelp.Text</id>
+        <version>0.0.1</version>
+        <authors>Matheus Moreira</authors>
+        <owners>Matheus Moreira</owners>
+        <licenseUrl>hhttps://github.com/mmoreira2000/BigHelp/blob/master/LICENSE</licenseUrl>
+        <projectUrl>https://github.com/mmoreira2000/BigHelp</projectUrl>
+        <!-- <iconUrl>https://raw.githubusercontent.com/damianh/LibLog/master/docs/liblog_icon.png</iconUrl> -->
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <developmentDependency>true</developmentDependency>
+        <description>Some useful string extension methods distributed as sourcecode package.</description>
+        <summary>A source code package that adds some useful extesion methods to strings. Those extensions includes a nice ToString for enumerables, an case insensitive Contains (called IsMatch) and some string extraction tools.</summary>
+        <copyright>Matheus Moreira 2019</copyright>
+        <releaseNotes>Soon.</releaseNotes>
+        <tags>extensions, string, helpers</tags>
+        <contentFiles>
+            <files include="*.cs.pp" />
+            <!-- <files include="LogProviders/*.cs.pp" /> -->
+        </contentFiles>
+    </metadata>
+    <files>
+        <file src="**/*.cs.pp" target="contentFiles/cs/netstandard2.0" />
+        <file src="**/*.cs.pp" target="contentFiles/cs/net45" />
+    </files>
+</package>
