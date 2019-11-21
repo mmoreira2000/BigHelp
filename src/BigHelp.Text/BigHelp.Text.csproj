@@ -1,0 +1,59 @@
+<Project>
+
+  <Import Project="Sdk.props" Sdk="Microsoft.NET.Sdk" />
+ 
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <Configurations>Debug;Release;PackageSources</Configurations>
+  </PropertyGroup>
+	
+  <PropertyGroup Condition="'$(Configuration)'=='PackageSources'">
+	<IsPackable>true</IsPackable>
+    <IncludeBuildOutput>false</IncludeBuildOutput>
+    <ContentTargetFolders>contentFiles</ContentTargetFolders>
+    <DisableImplicitFrameworkReferences>true</DisableImplicitFrameworkReferences>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo> 
+    <GenerateTargetFrameworkAttribute>false</GenerateTargetFrameworkAttribute>
+    <NoWarn>CS8021</NoWarn>
+    <NoBuild>true</NoBuild>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+  </PropertyGroup>
+  
+  <ItemGroup Condition="'$(Configuration)'!='PackageSources'">
+    <None Remove="**\*.pp" /><!-- Don't show generated files during regular development -->
+  </ItemGroup>
+  <ItemGroup Condition="'$(Configuration)'=='PackageSources'">
+    <None Include="**\*.pp" Exclude="obj\**" />
+    <Compile Remove="**\*.cs" /><!-- Don't show source files during package deployment -->
+  </ItemGroup>
+  
+  <ItemGroup Condition="'$(Configuration)'=='PackageSources'">
+    <Content Include="**\*.pp" Exclude="obj\**">
+      <Pack>true</Pack>
+      <PackagePath>$(ContentTargetFolders)\cs\netstandard2.0\$(ProjectName)\%(RecursiveDir)%(Filename)%(Extension)</PackagePath>
+    </Content>
+    <EmbeddedResource Update="@(EmbeddedResource)">
+      <Pack>true</Pack>
+      <PackagePath>$(ContentTargetFolders)\any\any\$(ProjectName)\%(RecursiveDir)%(Filename)%(Extension)</PackagePath>
+    </EmbeddedResource>
+    <PackageReference Remove="@(PackageReference)" />
+  </ItemGroup>
+ 
+  <Import Project="Sdk.targets" Sdk="Microsoft.NET.Sdk" />
+
+  <Target Name="Compile" Condition="'$(Configuration)'=='PackageSources'" />
+  <Target Name="CopyFilesToOutputDirectory" Condition="'$(Configuration)'=='PackageSources'" />
+
+  <!-- Unfortunately the .nuspec file is not valid for .pp files due to the attributes added by None/Content/Compile -->
+  <Target Name="PostPack" AfterTargets="Pack" Condition="'$(Configuration)'=='PackageSources'">
+    <Exec Command="dotnet run --project &quot;$(MSBuildProjectDirectory)\..\PackagePrep\PackagePrep.csproj&quot; -- nuspec $(ProjectDir)bin\$(Configuration)" />
+  </Target>
+  
+  <!-- Transform all .cs files into .cs.pp files with $RootNamespace$ -->
+  <PropertyGroup Condition="'$(Configuration)'=='PackageSources'">
+    <PreBuildEvent>
+      dotnet run --project "$(MSBuildProjectDirectory)\..\PackagePrep\PackagePrep.csproj" -- tokenize $(RootNamespace) $(MSBuildProjectDirectory)
+    </PreBuildEvent>
+  </PropertyGroup>
+  
+</Project>
