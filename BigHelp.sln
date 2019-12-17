@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.852
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29609.76
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BigHelp.Threading", "src\BigHelp.Threading\BigHelp.Threading.csproj", "{6E21E8DF-2C61-4A69-93AA-39DCA1E47472}"
 EndProject
@@ -14,6 +14,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BigHelp.Http", "src\BigHelp.Http\BigHelp.Http.csproj", "{7394414E-D0FD-46B9-A08B-9F5AFC5FD77E}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BigHelp.Text", "src\BigHelp.Text\BigHelp.Text.csproj", "{CD2E45F9-A2A4-41BF-8E87-4A288D82B845}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BigHelp.Tests", "tests\BigHelp.Tests\BigHelp.Tests.csproj", "{02FA4976-8D74-45D5-8F0C-10175E39760F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -46,6 +48,12 @@ Global
 		{CD2E45F9-A2A4-41BF-8E87-4A288D82B845}.PackageSources|Any CPU.Build.0 = PackageSources|Any CPU
 		{CD2E45F9-A2A4-41BF-8E87-4A288D82B845}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CD2E45F9-A2A4-41BF-8E87-4A288D82B845}.Release|Any CPU.Build.0 = Release|Any CPU
+		{02FA4976-8D74-45D5-8F0C-10175E39760F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{02FA4976-8D74-45D5-8F0C-10175E39760F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{02FA4976-8D74-45D5-8F0C-10175E39760F}.PackageSources|Any CPU.ActiveCfg = Debug|Any CPU
+		{02FA4976-8D74-45D5-8F0C-10175E39760F}.PackageSources|Any CPU.Build.0 = Debug|Any CPU
+		{02FA4976-8D74-45D5-8F0C-10175E39760F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{02FA4976-8D74-45D5-8F0C-10175E39760F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -55,6 +63,7 @@ Global
 		{F841467F-F9AC-42A9-9347-40F061187501} = {1E4EA76C-5385-4E83-A508-22667EDE73DB}
 		{7394414E-D0FD-46B9-A08B-9F5AFC5FD77E} = {77ABDC6F-785D-4D5A-95D1-F20A23BF6572}
 		{CD2E45F9-A2A4-41BF-8E87-4A288D82B845} = {77ABDC6F-785D-4D5A-95D1-F20A23BF6572}
+		{02FA4976-8D74-45D5-8F0C-10175E39760F} = {1E4EA76C-5385-4E83-A508-22667EDE73DB}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C407D670-8BA6-42B7-8800-C3AF43AF2C85}
