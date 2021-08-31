@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.852
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31321.278
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BigHelp.Threading", "src\BigHelp.Threading\BigHelp.Threading.csproj", "{6E21E8DF-2C61-4A69-93AA-39DCA1E47472}"
 EndProject
@@ -11,7 +11,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BigHelp.Threading.Performan
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Sources", "Sources", "{77ABDC6F-785D-4D5A-95D1-F20A23BF6572}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BigHelp.Http", "src\BigHelp.Http\BigHelp.Http.csproj", "{7394414E-D0FD-46B9-A08B-9F5AFC5FD77E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BigHelp.Http", "src\BigHelp.Http\BigHelp.Http.csproj", "{7394414E-D0FD-46B9-A08B-9F5AFC5FD77E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BigHelp.FluentRegEx", "src\BigHelp.FluentRegEx\BigHelp.FluentRegEx.csproj", "{F3DC7C7A-9C58-429A-B2A6-EE5EB4BF9C7D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BigHelp.Text", "src\BigHelp.Text\BigHelp.Text.csproj", "{1109C93D-590D-4AD8-A783-6FD2E9A59DD6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BigHelp.Lottery", "BigHelp.Lottery\BigHelp.Lottery.csproj", "{1A6BBEC6-79CE-4127-9E0A-B2D14C08582E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BigHelp.Lottery.Tests", "BigHelp.Lottery.Tests\BigHelp.Lottery.Tests.csproj", "{B022E69D-90FC-4D41-9832-789B6F47FDE9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,6 +39,22 @@ Global
 		{7394414E-D0FD-46B9-A08B-9F5AFC5FD77E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7394414E-D0FD-46B9-A08B-9F5AFC5FD77E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7394414E-D0FD-46B9-A08B-9F5AFC5FD77E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F3DC7C7A-9C58-429A-B2A6-EE5EB4BF9C7D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F3DC7C7A-9C58-429A-B2A6-EE5EB4BF9C7D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F3DC7C7A-9C58-429A-B2A6-EE5EB4BF9C7D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F3DC7C7A-9C58-429A-B2A6-EE5EB4BF9C7D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1109C93D-590D-4AD8-A783-6FD2E9A59DD6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1109C93D-590D-4AD8-A783-6FD2E9A59DD6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1109C93D-590D-4AD8-A783-6FD2E9A59DD6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1109C93D-590D-4AD8-A783-6FD2E9A59DD6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1A6BBEC6-79CE-4127-9E0A-B2D14C08582E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1A6BBEC6-79CE-4127-9E0A-B2D14C08582E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1A6BBEC6-79CE-4127-9E0A-B2D14C08582E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1A6BBEC6-79CE-4127-9E0A-B2D14C08582E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B022E69D-90FC-4D41-9832-789B6F47FDE9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B022E69D-90FC-4D41-9832-789B6F47FDE9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B022E69D-90FC-4D41-9832-789B6F47FDE9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B022E69D-90FC-4D41-9832-789B6F47FDE9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -39,6 +63,10 @@ Global
 		{6E21E8DF-2C61-4A69-93AA-39DCA1E47472} = {77ABDC6F-785D-4D5A-95D1-F20A23BF6572}
 		{F841467F-F9AC-42A9-9347-40F061187501} = {1E4EA76C-5385-4E83-A508-22667EDE73DB}
 		{7394414E-D0FD-46B9-A08B-9F5AFC5FD77E} = {77ABDC6F-785D-4D5A-95D1-F20A23BF6572}
+		{F3DC7C7A-9C58-429A-B2A6-EE5EB4BF9C7D} = {77ABDC6F-785D-4D5A-95D1-F20A23BF6572}
+		{1109C93D-590D-4AD8-A783-6FD2E9A59DD6} = {77ABDC6F-785D-4D5A-95D1-F20A23BF6572}
+		{1A6BBEC6-79CE-4127-9E0A-B2D14C08582E} = {77ABDC6F-785D-4D5A-95D1-F20A23BF6572}
+		{B022E69D-90FC-4D41-9832-789B6F47FDE9} = {1E4EA76C-5385-4E83-A508-22667EDE73DB}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C407D670-8BA6-42B7-8800-C3AF43AF2C85}
