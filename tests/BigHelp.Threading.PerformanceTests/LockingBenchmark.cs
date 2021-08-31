@@ -1,11 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading;
 using BenchmarkDotNet.Attributes;
+using BenchmarkDotNet.Jobs;
 
 namespace BigHelp.Threading.PerformanceTests
 {
-    [ClrJob(baseline: true), CoreJob, CoreRtJob]
+    [SimpleJob(RuntimeMoniker.NetCoreApp31)]
     [RPlotExporter, RankColumn]
     public class LockingBenchmark
     {
